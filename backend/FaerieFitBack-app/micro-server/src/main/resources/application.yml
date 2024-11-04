@@ -1,0 +1,7 @@
+server:
+port: 8761
+spring:
+application:
+name: 'micro-server'
+profiles:
+active: ${SPRING_PROFILES_ACTIVE:dev}
