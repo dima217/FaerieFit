@@ -1,7 +1,14 @@
 server:
-port: 8761
+  port: 8761
 spring:
-application:
-name: 'micro-server'
-profiles:
-active: ${SPRING_PROFILES_ACTIVE:dev}
+  application:
+    name: 'micro-server'
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/

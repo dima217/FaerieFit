@@ -1,1 +1,12 @@
-spring.application.name=micro-gateway
+server:
+  port: 8082
+
+spring:
+  application:
+    name: "micro-gateway"
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          lower-case-service-id: true
+          enabled: true
