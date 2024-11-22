@@ -17,8 +17,6 @@ public interface UserService {
 
     Optional<User> findByEmail(String email);
 
-    List<User> findBySearch(String email,String password);
-
     void deleteById(Long id);
 
     void deleteByEmail(String email);

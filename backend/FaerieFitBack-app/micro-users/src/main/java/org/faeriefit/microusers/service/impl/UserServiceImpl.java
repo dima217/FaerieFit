@@ -8,6 +8,8 @@ import org.faeriefit.microusers.convertor.UserDTOConvertor;
 import org.faeriefit.microusers.dto.UserDTO;
 import org.faeriefit.microusers.repository.UserRepository;
 import org.faeriefit.microusers.service.UserService;
+import org.faeriefit.microutility.exception.ExistResourceException;
+import org.faeriefit.microutility.exception.NotResourceException;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
@@ -36,46 +38,56 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(UserDTO userDTO) {
-        return null;
+        if (repository.existsByUsername(userDTO.getUsername())) {
+            throw new ExistResourceException("Username exists!");
+        }
+        if (repository.existsByEmail(userDTO.getEmail())) {
+            throw new ExistResourceException("Email exists!");
+        }
+        return repository.save(convertor.convertDTOToEntity(userDTO));
     }
 
     @Override
     public User update(UserDTO userUpdateDTO) {
-        return null;
+        if (!repository.existsById(userUpdateDTO.getId())) {
+            throw new NotResourceException("User does not exist");
+        }
+        return repository.save(convertor.convertDTOToEntity(userUpdateDTO));
     }
 
     @Override
     public Optional<User> findByEmail(String email) {
-        return Optional.empty();
-    }
-
-    @Override
-    public List<User> findBySearch(String email, String password) {
-        return null;
-    }
-
-    @Override
-    public void deleteById(Long id) {
-
-    }
-
-    @Override
-    public void deleteByEmail(String email) {
-
+        return repository.findByEmail(email);
     }
 
     @Override
     public Optional<User> findByUsername(String username) {
-        return Optional.empty();
+        return repository.findByUsername(username);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        if (!repository.existsById(id)) {
+            throw new NotResourceException("User does not exist!");
+        }
+        repository.deleteById(id);
+    }
+
+    @Override
+    public void deleteByEmail(String email) {
+        if (!repository.existsByEmail(email)) {
+            throw new NotResourceException("User does not exist!");
+        }
+        repository.deleteByEmail(email);
     }
 
     @Override
     public boolean existByUsername(String username) {
-        return false;
+        return repository.existsByUsername(username);
     }
 
     @Override
     public boolean existById(Long id) {
-        return false;
+        return repository.existsById(id);
     }
 }

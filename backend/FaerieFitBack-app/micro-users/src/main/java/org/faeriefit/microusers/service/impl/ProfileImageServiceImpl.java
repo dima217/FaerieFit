@@ -2,9 +2,7 @@ package org.faeriefit.microusers.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.faeriefit.microentity.entity.user.Profile;
 import org.faeriefit.microentity.entity.user.ProfileImage;
-import org.faeriefit.microusers.convertor.ProfileDTOConvertor;
 import org.faeriefit.microusers.convertor.ProfileImageDTOConvertor;
 import org.faeriefit.microusers.dto.ProfileImageDTO;
 import org.faeriefit.microusers.repository.ProfileImageRepository;
@@ -13,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Slf4j
