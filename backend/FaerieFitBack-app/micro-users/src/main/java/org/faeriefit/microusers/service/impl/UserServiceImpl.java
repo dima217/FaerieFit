@@ -8,6 +8,7 @@ import org.faeriefit.microusers.convertor.UserDTOConvertor;
 import org.faeriefit.microusers.dto.UserDTO;
 import org.faeriefit.microusers.repository.UserRepository;
 import org.faeriefit.microusers.service.UserService;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -24,12 +25,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findAll() {
-        return null;
+        return repository.findAll();
     }
 
     @Override
+    @Cacheable(value = "users", key = "#id", unless = "#result == null")
     public Optional<User> findById(Long id) {
-        return Optional.empty();
+        return repository.findById(id);
     }
 
     @Override

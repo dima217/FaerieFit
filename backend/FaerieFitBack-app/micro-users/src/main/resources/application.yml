@@ -17,4 +17,6 @@ duration:
 time:
   token:
     refresh: 90080
+service:
+  key: MicroTimaLox
 
