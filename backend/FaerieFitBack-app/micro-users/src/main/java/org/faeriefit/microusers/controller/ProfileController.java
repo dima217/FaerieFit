@@ -11,6 +11,7 @@ import org.faeriefit.microutility.exception.NotValidateParamException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -30,30 +31,34 @@ public class ProfileController {
     }
 
     @PostMapping("/user")
-    public ResponseEntity<Profile> findByUser(@Valid @RequestBody ProfileSearchDTO profileSearchDTO){
+    public ResponseEntity<Profile> findByUser(@Valid @RequestBody ProfileSearchDTO profileSearchDTO) {
         String email = profileSearchDTO.getEmail();
         Long userId = profileSearchDTO.getUserId();
 
-        if(!email.trim().isEmpty() && userId <= 0){
+        if (!email.trim().isEmpty() && userId <= 0) {
             throw new NotValidateParamException("Param missed: userId");
         }
 
-        if(email.isEmpty() && userId >0 ){
+        if (email.isEmpty() && userId > 0) {
             throw new NotValidateParamException("Param missed: email");
         }
 
         Optional<Profile> profile = service.findByUser(userId, email);
 
-        if(profile.isEmpty()){
+        if (profile.isEmpty()) {
             throw new NotResourceException("profile is not exist");
         }
         return ResponseEntity.ok(profile.get());
 
     }
 
+    @PostMapping("/all")
+    ResponseEntity<List<Profile>> findAll() {
+        return ResponseEntity.ok(service.findAll());
+    }
+
     @PutMapping("/update")
     ResponseEntity<Profile> update(@RequestBody @Valid ProfileDTO profileDTO) {
         return ResponseEntity.ok(service.update(profileDTO));
     }
-
 }
