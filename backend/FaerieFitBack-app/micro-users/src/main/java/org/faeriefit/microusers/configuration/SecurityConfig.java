@@ -34,7 +34,7 @@ public class SecurityConfig {
     private final ServiceAuthFilter serviceAuthFilter;
     private final UserServiceDetailsImpl userServiceDetails;
 
-    @Bean
+    @Bea
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 // Своего рода отключение CORS (разрешение запросов со всех доменов)

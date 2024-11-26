@@ -19,4 +19,6 @@ time:
     refresh: 90080
 service:
   key: MicroTimaLox
+google:
+  client-id: 1050346573009-b878r1dusrelodp1ms2djkpguhlf2pt6.apps.googleusercontent.com
 
