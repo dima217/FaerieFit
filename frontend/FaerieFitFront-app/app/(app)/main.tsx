@@ -1,13 +1,16 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StatusBar, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import DateBlock from '@/components/DateBlock'
+import globalStyles from '../../constants/style';
+import MainTemplate from '@/components/mainApp/MainTemplate';
 
 const Main = () => {
   return (
-    <SafeAreaView>
+    <View style={{backgroundColor:'#474747', flex:1}}>
       <DateBlock/>
-    </SafeAreaView>
+      <Text>asdfdd</Text>
+    </View>
   )
 }
 
