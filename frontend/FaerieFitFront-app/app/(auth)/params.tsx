@@ -2,7 +2,7 @@ import images from '@/constants/images';
 import React from 'react';
 import { Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import globalStyles from '../constants/style';
+import globalStyles from '../../constants/style';
 import RegestrationBlock from '@/components/RegestrationBlock';
 import Welcome from '@/components/Welcome';
 import { Redirect, router } from 'expo-router';
@@ -10,7 +10,7 @@ import Enter from '@/components/Enter';
 import Regestration from '@/components/Regestration';
 import Parametrs from '@/components/Parametrs';
 
-export default function App() {
+export default function SignIn() {
 
   return (
     <SafeAreaView style={globalStyles.SAW}>
@@ -21,24 +21,9 @@ export default function App() {
       </Image>
       <RegestrationBlock
         isReg = {false}
-        childComponent= {<Welcome/>}
-        title = 'Добро пожаловать'
+        childComponent= {<Parametrs/>}
+        title = 'Параметры'
       />
     </SafeAreaView>
   );
 }
-
-// import { StyleSheet, Text, View } from 'react-native'
-// import React from 'react'
-// import { SafeAreaView } from 'react-native-safe-area-context'
-// import DateBlock from '@/components/DateBlock'
-
-// const Main = () => {
-//   return (
-//     <SafeAreaView>
-//       <DateBlock/>
-//     </SafeAreaView>
-//   )
-// }
-
-
