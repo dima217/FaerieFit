@@ -14,8 +14,12 @@ const MainTemplate = ({children}:MTProps) => {
     <SafeAreaView style={styles.main}>
         <StatusBar barStyle="light-content" backgroundColor="#4CAC44"/>
         <View style={styles.header}>
+            <View></View>
             <Text style={styles.text}>Главная</Text>
             {/* <Image/> */}
+            <View>
+
+            </View>
         </View>
         {children}
     </SafeAreaView>
